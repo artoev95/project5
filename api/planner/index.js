@@ -5,6 +5,9 @@ var BSON = mongo.BSONPure;
 // get mongo client
 var MongoClient = require('mongodb').MongoClient;
 
+
+
+var passport  = require('passport');
 var ObjectId = require('mongodb').ObjectID;
 var config = require('../../config');
 var assert = require('assert');
@@ -14,28 +17,16 @@ var express     = require('express');
 var app         = express();
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
+var mongoose    = require('mongoose');
 var url = config.mongodbUri;
-
-var cookieParser = require("cookie-parser");
-var session = require("express-session");
-
-
-var morgan = require("morgan");
-
-app.use(morgan("dev"));
-app.use(cookieParser());
-app.use(session({secret: "anystringoftext",
-        saveUninitialized:true,
-        resave:true }));
 
 
 MongoClient.connect(url, function(err, db) {
+  console.log("adaweaw");
   assert.equal(null, err);
   config.logStars("Connected correctly to server.");
   mongoDb = db;
 });
-
-
 
 // Get list of plans
 exports.index = function(req, res) {
@@ -50,7 +41,7 @@ if (mongoDb){
         console.log('No database object!');
     }};
 
-// Creates a new plan .
+// Creates a new plan in datastore.
 exports.create = function(req, res) {
 
 var plan = req.body;
@@ -70,7 +61,7 @@ var plan = req.body;
    
 };
 
-// Update .
+// Update an existing plan in datastore.
 exports.update = function(req, res) {
 
   var id = req.params.id;
@@ -85,7 +76,7 @@ exports.update = function(req, res) {
    
 };
 
-// delete ..
+// delete an existing plan in datastore.
 exports.delete = function(req, res) {
 
      var id = req.params.id;
