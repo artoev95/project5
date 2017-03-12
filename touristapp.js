@@ -44,8 +44,4 @@ app.post('/api/planner',plan.create);
 app.put('/api/planner/:id',plan.update);
 app.delete('/api/planner/:id',plan.delete);
 
-
-
-
-console.log("Server running at http://127.0.0.1:8000/");
 //
