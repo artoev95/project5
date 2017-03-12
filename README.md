@@ -5,3 +5,4 @@ This app secured with https .
 
 In order to run this in your browser or REST service you need to use the following url :https://localhost:3443/api/planner/
 
+Installation
