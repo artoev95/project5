@@ -38,7 +38,7 @@ MongoClient.connect(url, function(err, db) {
   mongoDb = db;
 });
 
-// Get list of plans
+// Get plans
 exports.index = function(req, res) {
 if (mongoDb){
       var collection = mongoDb.collection('example1');
@@ -51,7 +51,7 @@ if (mongoDb){
         console.log('No database object!');
     }};
 
-// Creates a new plan in datastore.
+// Create a new plan 
 exports.create = function(req, res) {
 
 var plan = req.body;
@@ -71,7 +71,7 @@ var plan = req.body;
    
 };
 
-// Update an existing plan in datastore.
+// Update 
 exports.update = function(req, res) {
 
   var id = req.params.id;
@@ -86,7 +86,7 @@ exports.update = function(req, res) {
    
 };
 
-// delete an existing plan in datastore.
+// delete 
 exports.delete = function(req, res) {
 
      var id = req.params.id;
