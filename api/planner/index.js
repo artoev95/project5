@@ -20,6 +20,16 @@ var morgan      = require('morgan');
 var mongoose    = require('mongoose');
 var url = config.mongodbUri;
 
+var helmet = require('helmet')
+
+
+
+app.use(helmet())
+
+
+
+app.use(helmet.noCache())
+app.use(helmet.frameguard())
 
 MongoClient.connect(url, function(err, db) {
   console.log("adaweaw");
