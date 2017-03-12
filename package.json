@@ -11,12 +11,13 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
+    "cookie-parser": "latest",
     "express": "^4.15.2",
+    "express-ssession": "latest",
     "jsonwebtoken": "^7.3.0",
     "mongoose": "^4.8.6",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
-    "cookie-parser" : "latest",
-    "express-ssession":"latest"
+    "passport-jwt": "^2.2.1"
   }
 }
