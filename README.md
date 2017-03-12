@@ -5,4 +5,5 @@ This app secured with https .
 
 In order to run this in your browser or REST service you need to use the following url :https://localhost:3443/api/planner/
 
-Installation
+Installation:
+In order to install this app you may be required to do some npm installations ,after this you can simply type in your command line "node touristapp.js " to run the program
