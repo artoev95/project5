@@ -1,10 +1,15 @@
 'use strict'
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const express = require('express')
 const fs = require('fs')
 const https =require('https')
 const http =require('http')
 const path = require('path')
+var mongoose = require('mongoose');
+
+var config = require('./config/');
+var plan = require('./api/planner/index');
 
 const app = express()
 const directoryToServe = 'client'
@@ -24,17 +29,14 @@ https.createServer(httpsOptions, app)
 
 var bodyParser = require('body-parser');
 
+// Connect to database
+mongoose.connect(config.mongo.uri, config.mongo.options);
 
-
-
+app.use(express.static(config.root));
+console.log(config.root);
 
 
 app.use(bodyParser.json());
-app
-app.get('/',  function(request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.end("We're up and running!!!");
-});
 
 
 var plan = require('./api/planner/index');
@@ -43,5 +45,5 @@ app.get('/api/planner',plan.index);
 app.post('/api/planner',plan.create);
 app.put('/api/planner/:id',plan.update);
 app.delete('/api/planner/:id',plan.delete);
-
+http.createServer(app).listen(80);
 //
