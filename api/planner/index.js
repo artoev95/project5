@@ -1,101 +1,53 @@
-var mongo = require('mongodb');
-var BSON = mongo.BSONPure;
 
+'use strict';
 
-// get mongo client
-var MongoClient = require('mongodb').MongoClient;
+var _ = require('lodash');
+var plan = require('./contact.model');
 
-
-
-var passport  = require('passport');
-var ObjectId = require('mongodb').ObjectID;
-var config = require('../../config');
-var assert = require('assert');
-
-// =======================
-var express     = require('express');
-var app         = express();
-var bodyParser  = require('body-parser');
-var morgan      = require('morgan');
-var mongoose    = require('mongoose');
-var url = config.mongodbUri;
-
-var helmet = require('helmet')
-
-
-
-app.use(helmet())
-
-
-
-app.use(helmet.noCache())
-app.use(helmet.frameguard())
-
-MongoClient.connect(url, function(err, db) {
-  console.log("adaweaw");
-  assert.equal(null, err);
-  config.logStars("Connected correctly to server.");
-  mongoDb = db;
-});
-
-// Get plans
+// Get list of contacts
 exports.index = function(req, res) {
-if (mongoDb){
-      var collection = mongoDb.collection('example1');
-      collection.find().toArray(function(err, items) {
-          res.send(items);
-      });
-    }
-    else
-    {
-        console.log('No database object!');
-    }};
+          // Connect to the db
+   plan.find(function (err, plan) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, plan);
+  });
 
-// Create a new plan 
+} ;
+
+// Creates a new contact in datastore.
 exports.create = function(req, res) {
-
-var plan = req.body;
-    if (mongoDb){
-      var collection = mongoDb.collection('example1');
-      collection.insertOne(plan, function(err, result) {
-            assert.equal(err,null);
-            config.logStars('Inserted: ' + JSON.stringify(result));
-            res.status(200).send(result);
-            
-        });
-    }
-  else
-  {
-    config.logStars('No database object!');
-  }
-   
+  plan.create(req.body, function(err, plan) {
+    if(err) { return handleError(res, err); }
+    return res.json(201, plan);
+  });
 };
 
-// Update 
+// Updates an existing contact in the DB.
 exports.update = function(req, res) {
-
-  var id = req.params.id;
-  var plan = req.body;
-  config.logStars('Updating plan: ' + id);
-  var collection = mongoDb.collection('example1');
-  collection.updateOne({'_id':ObjectId(id)}, plan, function(err, result) {
-           assert.equal(err,null);
-              console.log('' + result + ' document(s) updated');
-              res.status(200).send(result);
+  if(req.body._id) { delete req.body._id; }
+  plan.findById(req.params.id, function (err, plan) {
+    if (err) { return handleError(res, err); }
+    if(!plan) { return res.send(404); }
+    var updated = _.merge(plan, req.body);
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, plan);
+    });
   });
-   
 };
 
-// delete 
+// delete an existing contact in datastore.
 exports.delete = function(req, res) {
-
-     var id = req.params.id;
-  config.logStars('Deleting plan: ' + id);
-  var collection = mongoDb.collection('example1');
-  collection.deleteOne({'_id':ObjectId(id)}, function(err, result) {
-           assert.equal(err,null);
-          console.log('' + result + ' document(s) deleted');
-          res.status(200).send(result);
+    plan.findById(req.params.id, function (err, plan) {
+    if(err) { return handleError(res, err); }
+    if(!plan) { return res.send(404); }
+    plan.remove(function(err) {
+      if(err) { return handleError(res, err); }
+      return res.send(204);
+    });
   });
-   
+};
+
+function handleError(res, err) {
+  return res.send(500, err);
 };
