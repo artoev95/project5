@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha \"api/**/test/*.js\""
   },
   "author": "Arthur Hovse[yan",
   "license": "ISC",
@@ -13,11 +13,19 @@
     "body-parser": "^1.17.1",
     "cookie-parser": "latest",
     "express": "^4.15.2",
+    "express-session": "^1.15.2",
     "express-ssession": "latest",
     "helmet": "^3.5.0",
     "jsonwebtoken": "^7.3.0",
-    "mongoose": "^4.8.6",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.9.2",
     "morgan": "^1.8.1",
-    "passport": "^0.3.2"
+    "passport": "^0.3.2",
+    "pubnub": "^4.8.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "should": "^11.2.1",
+    "supertest": "^3.0.0"
   }
 }
