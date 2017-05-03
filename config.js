@@ -1,7 +1,6 @@
 
 var env = process.env;
 var nodeEnv = env.NODE_ENV || 'development';
-var connectionUrl = 'mongodb://hui12345:hui12345@ds161179.mlab.com:61179/hui12345';
 
 exports.nodeEnv;
 
@@ -15,5 +14,4 @@ exports.port = env.PORT || 8000;
 exports.host = env.HOST || 'localhost';
 exports.mongodbUri = 'mongodb://hui12345:hui12345@ds161179.mlab.com:61179/hui12345';
 exports.secret = 'artur';
-
 
