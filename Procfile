@@ -1,1 +1,1 @@
-web: node touristapp.js
+web: node index.js
