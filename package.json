@@ -1,7 +1,7 @@
 {
   "name": "node-token-jwt",
   "version": "1.0.0",
-  "description": "",
+  "description": "The name of this project is Tourist app.The main goal of this app is to plan for tourist destinations . A user can create a plan and enter data like location,attraction,approx_cost,holiday_type and transport_type.\r The user can view ,update and delete entries in the project.\r This app secured with https .",
   "main": "server.js",
   "scripts": {
     "test": "mocha \"api/**/test/*.js\""
@@ -12,8 +12,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "cookie-parser": "latest",
-    "express": "4.15.2",
-    "express-session": "^1.15.2",
+    "express": "^4.15.2",
     "express-session": "latest",
     "helmet": "^3.5.0",
     "jsonwebtoken": "^7.3.0",
@@ -27,5 +26,14 @@
     "mocha": "^3.2.0",
     "should": "^11.2.1",
     "supertest": "^3.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artoev95/project5.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/artoev95/project5/issues"
+  },
+  "homepage": "https://github.com/artoev95/project5#readme"
 }
