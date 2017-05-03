@@ -36,4 +36,4 @@ var all = {
 // ==============================================
 module.exports = _.merge(
   all,
-  require('./' + process.env.NODE_ENV + '.js') || 80 {});
+  require('./' + process.env.NODE_ENV + '.js') || {});
