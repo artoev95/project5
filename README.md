@@ -43,7 +43,7 @@ I have deployed the app in Heroku and AWS.
 
 Heroku link :https://agile-basin-98265.herokuapp.com/
 
-AWS: ec2-34-208-219-17.us-west-2.compute.amazonaws.com
+AWS: ec2-35-164-22-226.us-west-2.compute.amazonaws.com
 
 # Built with
 Sublime
