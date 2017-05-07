@@ -2,7 +2,7 @@
 'use strict';
 
 var _ = require('lodash');
-var plan = require('./contact.model');
+var plan = require('./plan.model');
 
 // Get list of contacts
 exports.index = function(req, res) {
