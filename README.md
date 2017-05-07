@@ -40,7 +40,9 @@ In order to run this in your browser or REST service you need to use the followi
 
 # Deployment 
 I have deployed the app in Heroku and AWS.
+
 Heroku link :https://agile-basin-98265.herokuapp.com/
+
 AWS: ec2-34-208-219-17.us-west-2.compute.amazonaws.com
 
 # Built with
